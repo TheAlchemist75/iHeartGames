@@ -1,13 +1,24 @@
-import { HStack, Image, Text } from "@chakra-ui/react";
+import { HStack, Image, Text, useColorMode } from "@chakra-ui/react";
 
 import logoHeart from "../assets/logoHeart.png";
+import ColorModeToggle from "./ColorModeToggle";
+import logoHeartLight from "../assets/logoHeartLight.png";
 
 const NavBar = () => {
+  const { colorMode } = useColorMode();
+
+  const logo = colorMode === "light" ? logoHeartLight : logoHeart;
   return (
     <>
-      <HStack>
-        <Image src={logoHeart} boxSize={"3rem"} />
-        <Text>iHeartGames</Text>
+      <HStack padding={"1rem"} justifyContent={"space-between"}>
+        <HStack>
+          <Image src={logo} boxSize={"3.5rem"} />
+          <Text>iHeartGames</Text>
+        </HStack>
+
+        <HStack>
+          <ColorModeToggle />
+        </HStack>
       </HStack>
     </>
   );
