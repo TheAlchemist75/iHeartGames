@@ -11,7 +11,11 @@ interface GameCardProps {
 const GameCard = ({ game }: GameCardProps) => {
   return (
     <>
-      <Card borderRadius={10} overflow={"hidden"}>
+      <Card
+        width={{ base: "100%", sm: "100%", md: "100%", lg: "450px" }}
+        borderRadius={10}
+        overflow={"hidden"}
+      >
         <Image src={getCroppedImageUrl(game.background_image)} />
         <CardBody>
           <Heading fontSize={"2xl"}>{game.name}</Heading>
