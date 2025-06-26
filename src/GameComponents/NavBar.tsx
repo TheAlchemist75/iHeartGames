@@ -47,7 +47,7 @@ const NavBar = ({ onSearch }: SearchInputProps) => {
             <SearchInput onSearch={onSearch} />
           </Box>
 
-          <Box display={{ base: "block", md: "none" }} mr={2}>
+          <Box display={{ base: "block", md: "none" }} mr={4}>
             <IconButton
               aria-label="Open search"
               icon={<BsSearch />}
