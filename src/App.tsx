@@ -9,7 +9,7 @@ import type { Platform } from "./hooks/useGames";
 import SortSelector from "./GameComponents/SortSelector";
 import GameHeading from "./GameComponents/GameHeading";
 
-import { SpeedInsights } from "@vercel/speed-insights";
+import { injectSpeedInsights } from "@vercel/speed-insights";
 
 export interface GameQuery {
   genre: Genre | null;
@@ -73,7 +73,7 @@ function App() {
           <GameGrid gameQuery={gameQuery} />
         </GridItem>
       </Grid>
-      <SpeedInsights />
+      {injectSpeedInsights()}
     </>
   );
 }
