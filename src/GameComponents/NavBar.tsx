@@ -1,4 +1,4 @@
-import { Box, HStack, Image, Text, useColorMode } from "@chakra-ui/react";
+import { Box, HStack, Image, Link, Text, useColorMode } from "@chakra-ui/react";
 
 import logoHeart from "../assets/logoHeart.png";
 import logoHeartLight from "../assets/logoHeartLight.png";
@@ -17,7 +17,15 @@ const NavBar = ({ onSearch }: SearchInputProps) => {
     <HStack padding="1rem" justifyContent="space-between">
       <HStack flex="1" spacing={4}>
         <Image src={logo} boxSize="3.5rem" />
-        <Text whiteSpace="nowrap">iHeartGames</Text>
+        <Link href="/" _hover={{ textDecoration: "none" }}>
+          <Text
+            whiteSpace="nowrap"
+            fontFamily="'Racing Sans One', sans-serif"
+            fontSize="3xl"
+          >
+            iHeartGames
+          </Text>
+        </Link>
 
         <Box flex="1">
           <SearchInput onSearch={onSearch} />
