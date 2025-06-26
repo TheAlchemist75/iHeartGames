@@ -8,9 +8,10 @@ const ColorModeToggle = () => {
     <IconButton
       onClick={toggleColorMode}
       variant="outline"
-      size="sm"
+      size="md"
       aria-label="Toggle color mode"
       icon={colorMode === "light" ? <LuMoon /> : <LuSun />}
+      fontSize={"20px"}
     />
   );
 };

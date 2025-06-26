@@ -1,14 +1,10 @@
 import {
   Box,
+  Flex,
   HStack,
   IconButton,
   Image,
   Link,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalOverlay,
   Text,
   useColorMode,
   useDisclosure,
@@ -18,6 +14,7 @@ import logoHeart from "../assets/logoHeart.png";
 import logoHeartLight from "../assets/logoHeartLight.png";
 import ColorModeToggle from "./ColorModeToggle";
 import SearchInput from "./SearchInput";
+import { Modal, ModalOverlay, ModalContent, ModalBody } from "@chakra-ui/react";
 
 interface SearchInputProps {
   onSearch: (searchText: string) => void;
@@ -25,13 +22,14 @@ interface SearchInputProps {
 
 const NavBar = ({ onSearch }: SearchInputProps) => {
   const { colorMode } = useColorMode();
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const logo = colorMode === "light" ? logoHeartLight : logoHeart;
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
-      <HStack padding="1rem" justifyContent="space-between" flexWrap="wrap">
-        <HStack flex="1" spacing={4}>
+      <HStack padding="1rem" justifyContent="space-between" alignItems="center">
+        <HStack flex="1" spacing={4} display={{ base: "none", md: "flex" }}>
           <Image src={logo} boxSize="3.5rem" />
           <Link href="/" _hover={{ textDecoration: "none" }}>
             <Text
@@ -42,29 +40,37 @@ const NavBar = ({ onSearch }: SearchInputProps) => {
               iHeartGames
             </Text>
           </Link>
-
-          <Box flex="1" display={{ base: "none", md: "block" }}>
+          <Box flex="1">
             <SearchInput onSearch={onSearch} />
-          </Box>
-
-          <Box display={{ base: "block", md: "none" }} mr={4}>
-            <IconButton
-              aria-label="Open search"
-              icon={<BsSearch />}
-              variant="ghost"
-              onClick={onOpen}
-            />
           </Box>
         </HStack>
 
-        <ColorModeToggle />
+        <HStack flex="1" spacing={4} display={{ base: "flex", md: "none" }}>
+          <Image src={logo} boxSize="3.5rem" />
+          <Text fontSize="xl" fontFamily="'Racing Sans One', sans-serif">
+            iHeartGames
+          </Text>
+        </HStack>
+
+        <Flex gap={3} display={{ base: "flex", md: "none" }}>
+          <IconButton
+            aria-label="Search"
+            icon={<BsSearch />}
+            variant="outline"
+            onClick={onOpen}
+          />
+          <ColorModeToggle />
+        </Flex>
+
+        <Box display={{ base: "none", md: "block" }}>
+          <ColorModeToggle />
+        </Box>
       </HStack>
 
-      <Modal isOpen={isOpen} onClose={onClose} isCentered>
+      <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent mx={4}>
-          <ModalCloseButton />
-          <ModalBody paddingY={8}>
+        <ModalContent marginTop="20%">
+          <ModalBody>
             <SearchInput
               onSearch={(text) => {
                 onSearch(text);
